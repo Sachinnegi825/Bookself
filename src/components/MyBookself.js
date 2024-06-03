@@ -11,11 +11,14 @@ const MyBookshelf = () => {
   }, []);
 
   return (
-    <div className="book_card_box">
-      {filteredBookData &&
-        filteredBookData.map((bookInfo, i) => {
-          return <BookCard key={i} id={i} value={2} bookInfo={bookInfo} />;
-        })}
+    <div>
+      <h1 className="my_app_heading">MY BOOKSELF</h1>
+      <div className="book_card_box">
+        {filteredBookData &&
+          filteredBookData.map((bookInfo, i) => {
+            return <BookCard key={i} id={i} value={2} bookInfo={bookInfo} />;
+          })}
+      </div>
     </div>
   );
 };
