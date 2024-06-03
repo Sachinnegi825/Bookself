@@ -14,13 +14,23 @@ const Home = () => {
   }, []);
 
   const getBookData = async () => {
-    const apiResponse = await fetch(
-      "https://openlibrary.org/search.json?q=fiction&limit=10&page=1"
-    );
-    const data = await apiResponse.json();
-    setBookdata(data?.docs);
-    setFilteredBookData(data?.docs);
-    setLoading(false);
+    try {
+      const apiResponse = await fetch(
+        "https://openlibrary.org/search.json?q=fiction&limit=10&page=1"
+      );
+
+      if (!apiResponse.ok) {
+        throw new Error("Failed to fetch data");
+      }
+
+      const data = await apiResponse.json();
+      setBookdata(data?.docs);
+      setFilteredBookData(data?.docs);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching book data:", error);
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
