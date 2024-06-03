@@ -14,10 +14,13 @@ const MyBookshelf = () => {
     <div>
       <h1 className="my_app_heading">MY BOOKSELF</h1>
       <div className="book_card_box">
-        {filteredBookData &&
+        {filteredBookData.length > 0 ? (
           filteredBookData.map((bookInfo, i) => {
             return <BookCard key={i} id={i} value={2} bookInfo={bookInfo} />;
-          })}
+          })
+        ) : (
+          <div className="empty_box">NO BOOK IS ADDED TILL NOW!</div>
+        )}
       </div>
     </div>
   );
